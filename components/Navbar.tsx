@@ -6,6 +6,7 @@ import { FaSearch, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,6 +74,10 @@ const Navbar = () => {
               aria-label="Shopping bag"
               title="Shopping bag"
               className="hover:opacity-70 transition p-2"
+              onClick={() => {
+                setCartOpen(!cartOpen);
+                setMenuOpen(false);
+              }}
             >
               <FaShoppingBag size={16} />
             </button>
@@ -80,7 +85,42 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* CART DRAWER */}
+      {cartOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+            onClick={() => setCartOpen(false)}
+          />
+          <aside className="fixed right-0 top-0 z-50 h-full w-full max-w-105 bg-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+              <h2 className="text-base uppercase tracking-[0.35em] text-slate-900">
+                Your cart (0)
+              </h2>
+              <button
+                className="text-lg text-slate-900 hover:text-black"
+                aria-label="Close cart"
+                onClick={() => setCartOpen(false)}
+              >
+                <FaTimes />
+              </button>
+            </div>
+            <div className="px-6 py-8 text-slate-600">
+              <p className="text-sm">Your cart is empty.</p>
+            </div>
+            <div className="mt-auto border-t border-slate-200 px-6 py-6">
+              <div className="flex items-center justify-between text-sm uppercase tracking-[0.3em] text-slate-500">
+                <span>Total</span>
+                <span>$0</span>
+              </div>
+              <button className="mt-6 w-full rounded-full bg-slate-900 px-5 py-3 text-sm uppercase tracking-[0.3em] text-white transition hover:bg-black">
+                Checkout
+              </button>
+            </div>
+          </aside>
+        </>
+      )}
+
       {menuOpen && (
         <div
           className={`md:hidden absolute top-16 left-0 w-full ${
