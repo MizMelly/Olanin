@@ -58,12 +58,16 @@
 ========================= */
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     border-color: var(--color-border);
   }
 
   html {
     scroll-behavior: smooth;
+    min-height: 100%;
   }
 
   body {

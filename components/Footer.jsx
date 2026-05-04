@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 text-gray-700">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Brand */}
         <div>
@@ -45,13 +45,13 @@ export default function Footer() {
             Newsletter
           </h3>
 
-          <div className="flex items-center border-b border-gray-400">
+          <div className="flex flex-col gap-4 border-b border-gray-400 py-2 sm:flex-row sm:items-center">
             <input
               type="email"
               placeholder="Your email"
               className="flex-1 py-2 text-sm outline-none bg-transparent"
             />
-            <button className="text-xs tracking-widest uppercase">
+            <button className="text-xs tracking-widest uppercase sm:ml-3">
               Join
             </button>
           </div>

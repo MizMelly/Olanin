@@ -39,7 +39,7 @@ export default function BestSellers() {
           Featured
         </p>
 
-        <h2 className="text-4xl md:text-6xl font-serif text-black">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-black">
           Best Sellers
         </h2>
       </div>
@@ -50,7 +50,7 @@ export default function BestSellers() {
           <div key={index} className="group">
             
             {/* IMAGE */}
-            <div className="relative w-full h-105 overflow-hidden bg-gray-50">
+            <div className="relative w-full h-[320px] sm:h-[360px] md:h-[420px] overflow-hidden bg-gray-50">
               <Image
                 src={item.image}
                 alt={item.name}
