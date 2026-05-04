@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaSearch, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +20,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Check if we're on the collection page
+  const isCollectionPage = pathname === '/collection';
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || isCollectionPage
           ? "bg-white/90 backdrop-blur-md shadow-lg h-16"
           : "bg-transparent h-20"
       }`}
@@ -28,14 +34,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-full">
         <div
           className={`flex items-center justify-between h-full transition-all duration-500 ${
-            scrolled ? "text-black" : "text-white"
+            scrolled || isCollectionPage ? "text-black" : "text-white"
           }`}
         >
           {/* LEFT - DESKTOP MENU */}
           <nav className="hidden md:flex items-center gap-8 lg:gap-10 text-xs lg:text-sm tracking-[0.25em] uppercase">
-            <a href="#" className="hover:opacity-70 transition">Shop</a>
-            <a href="#" className="hover:opacity-70 transition">New</a>
-            <a href="#" className="hover:opacity-70 transition">Collections</a>
+            <Link href="/collection" className="hover:opacity-70 transition">Shop</Link>
+            <Link href="/collection" className="hover:opacity-70 transition">New</Link>
+            <Link href="/collection" className="hover:opacity-70 transition">Collections</Link>
           </nav>
 
           {/* MOBILE MENU BUTTON */}
@@ -49,15 +55,17 @@ const Navbar = () => {
 
           {/* CENTER LOGO */}
           <div className="absolute left-1/2 -translate-x-1/2">
-            <h1
-              className={`tracking-[0.3em] font-light transition-all duration-500 text-center ${
-                scrolled
-                  ? "text-base sm:text-lg md:text-xl"
-                  : "text-lg sm:text-xl md:text-2xl"
-              }`}
-            >
-              OLANIN
-            </h1>
+            <Link href="/">
+              <h1
+                className={`tracking-[0.3em] font-light transition-all duration-500 text-center cursor-pointer ${
+                  scrolled
+                    ? "text-base sm:text-lg md:text-xl"
+                    : "text-lg sm:text-xl md:text-2xl"
+                }`}
+              >
+                OLANIN
+              </h1>
+            </Link>
           </div>
 
           {/* RIGHT ICONS */}
@@ -128,9 +136,9 @@ const Navbar = () => {
           } shadow-lg`}
         >
           <nav className="flex flex-col items-center py-6 gap-6 text-sm uppercase tracking-[0.2em]">
-            <a href="#" onClick={() => setMenuOpen(false)}>Shop</a>
-            <a href="#" onClick={() => setMenuOpen(false)}>New</a>
-            <a href="#" onClick={() => setMenuOpen(false)}>Collections</a>
+            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 transition">Shop</Link>
+            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 transition">New</Link>
+            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 transition">Collections</Link>
           </nav>
         </div>
       )}

@@ -27,12 +27,39 @@ const products = [
     price: "$360",
     image: "/images/p4.jpg",
   },
+  {
+    name: "Brazilian Closure",
+    category: "CLOSURES",
+    price: "$85",
+    image: "/images/p5.jpg",
+  },
+  {
+    name: "Curly Bundle Deal",
+    category: "BUNDLES",
+    price: "$275",
+    image: "/images/p6.jpg",
+  },
 ];
 
-export default function BestSellers() {
+interface BestSellersProps {
+  selectedFilter: string;
+}
+
+export default function BestSellers({ selectedFilter }: BestSellersProps) {
+  const filteredProducts = selectedFilter === "All"
+    ? products
+    : products.filter(product => {
+        const categoryMap: { [key: string]: string } = {
+          "Wigs": "WIGS",
+          "Bundles": "BUNDLES",
+          "Closures": "CLOSURES"
+        };
+        return product.category === categoryMap[selectedFilter];
+      });
+
   return (
     <section className="w-full bg-white py-24 px-6 md:px-12">
-      
+
       {/* HEADER */}
       <div className="text-center mb-16">
         <p className="text-xs tracking-[0.4em] uppercase text-gray-500 mb-4">
@@ -46,9 +73,9 @@ export default function BestSellers() {
 
       {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {products.map((item, index) => (
+        {filteredProducts.map((item, index) => (
           <div key={index} className="group">
-            
+
             {/* IMAGE */}
             <div className="relative w-full h-[320px] sm:h-[360px] md:h-[420px] overflow-hidden bg-gray-50">
               <Image
@@ -61,12 +88,12 @@ export default function BestSellers() {
 
             {/* TEXT */}
             <div className="mt-5 flex items-start justify-between">
-              
+
               <div>
                 <h3 className="text-lg font-serif text-black">
                   {item.name}
                 </h3>
-                
+
                 <p className="text-[10px] tracking-[0.3em] uppercase text-gray-500 mt-2">
                   {item.category}
                 </p>

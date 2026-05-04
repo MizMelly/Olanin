@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -31,9 +32,12 @@ const Hero = () => {
           A curated edit of luxury hair, hand-crafted with intention.
         </p>
 
-        <button className="mt-8 w-full max-w-max px-8 py-3 border border-white text-sm tracking-widest hover:bg-white hover:text-black transition sm:w-auto">
+        <Link
+          href="/collection"
+          className="mt-8 w-full max-w-max px-8 py-3 border border-white text-sm tracking-widest hover:bg-white hover:text-black transition sm:w-auto inline-block text-center"
+        >
           SHOP NOW
-        </button>
+        </Link>
 
         {/* Scroll indicator */}
         <p className="absolute bottom-10 text-xs tracking-[0.3em] text-white/70">
