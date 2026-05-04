@@ -1,26 +1,116 @@
+/* Tailwind */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Optional animations (only if installed) */
+/* @import "tailwindcss-animate"; */
+
+/* Dark mode */
+@custom-variant dark (&:is(.dark *));
+
+/* =========================
+   DESIGN TOKENS
+========================= */
 
 @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-border: var(--border);
+
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* =========================
+   ROOT
+========================= */
+
+:root {
+  --radius: 0rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.15 0 0);
+
+  --border: oklch(0.92 0.005 80);
+
+  --gold: oklch(0.74 0.09 75);
+  --gold-foreground: oklch(1 0 0);
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.98 0 0);
+}
+
+/* =========================
+   BASE
+========================= */
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  .tracking-luxury {
+    letter-spacing: 0.32em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================
+   UTILITIES
+========================= */
+
+@layer utilities {
+
+  .hover-zoom img {
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hover-zoom:hover img {
+    transform: scale(1.06);
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

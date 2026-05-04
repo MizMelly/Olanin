@@ -1,0 +1,47 @@
+import Image from "next/image";
+
+const Hero = () => {
+  return (
+    <section className="relative h-screen w-full overflow-hidden">
+
+      {/* Background Image */}
+      <Image
+        src="/images/hero.jpg"
+        alt="hero"
+        fill
+        priority
+        className="object-cover"
+      />
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/30" />
+
+      {/* HERO TEXT */}
+      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-6">
+
+        <p className="uppercase tracking-[0.3em] text-xs mb-4 text-white/70">
+          New Collection — 2026
+        </p>
+
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight max-w-4xl">
+          Elevated fashion for modern women
+        </h1>
+
+        <p className="mt-6 text-sm md:text-base text-white/80 max-w-md">
+          A curated edit of luxury hair, hand-crafted with intention.
+        </p>
+
+        <button className="mt-8 px-8 py-3 border border-white text-sm tracking-widest hover:bg-white hover:text-black transition">
+          SHOP NOW
+        </button>
+
+        {/* Scroll indicator */}
+        <p className="absolute bottom-10 text-xs tracking-[0.3em] text-white/70">
+          SCROLL
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
