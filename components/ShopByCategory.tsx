@@ -42,7 +42,7 @@ export default function ShopByCategory() {
         {categories.map((item, index) => (
           <div
             key={index}
-            className="relative group overflow-hidden aspect-[4/5] md:aspect-[3/2] min-h-[320px]"
+            className="relative group overflow-hidden aspect-4/5 md:aspect-3/2 min-h-80"
           >
             {/* IMAGE */}
             <Image
