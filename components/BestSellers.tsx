@@ -57,6 +57,15 @@ export default function BestSellers({ selectedFilter }: BestSellersProps) {
         return product.category === categoryMap[selectedFilter];
       });
 
+  const staggerClasses = [
+    'animation-delay-stagger-0',
+    'animation-delay-stagger-1',
+    'animation-delay-stagger-2',
+    'animation-delay-stagger-3',
+    'animation-delay-stagger-4',
+    'animation-delay-stagger-5'
+  ];
+
   return (
     <section className="w-full bg-white py-24 px-6 md:px-12">
 
@@ -74,23 +83,28 @@ export default function BestSellers({ selectedFilter }: BestSellersProps) {
       {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredProducts.map((item, index) => (
-          <div key={index} className="group">
+          <div
+            key={index}
+            className={`group animate-fade-in-up ${staggerClasses[index % staggerClasses.length]}`}
+          >
 
             {/* IMAGE */}
-            <div className="relative w-full h-[320px] sm:h-[360px] md:h-[420px] overflow-hidden bg-gray-50">
+            <div className="relative w-full h-80 sm:h-90 md:h-105 overflow-hidden bg-gray-50">
               <Image
                 src={item.image}
                 alt={item.name}
                 fill
-                className="object-cover group-hover:scale-105 transition duration-700"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover group-hover:scale-110 transition-all duration-700 ease-out"
               />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
             </div>
 
             {/* TEXT */}
-            <div className="mt-5 flex items-start justify-between">
+            <div className="mt-5 flex items-start justify-between group-hover:-translate-y-0.5 transition-transform duration-300">
 
               <div>
-                <h3 className="text-lg font-serif text-black">
+                <h3 className="text-lg font-serif text-black group-hover:text-gray-800 transition-colors duration-300">
                   {item.name}
                 </h3>
 
@@ -99,7 +113,7 @@ export default function BestSellers({ selectedFilter }: BestSellersProps) {
                 </p>
               </div>
 
-              <p className="text-sm text-black">
+              <p className="text-sm text-black font-medium">
                 {item.price}
               </p>
             </div>

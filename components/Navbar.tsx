@@ -39,9 +39,9 @@ const Navbar = () => {
         >
           {/* LEFT - DESKTOP MENU */}
           <nav className="hidden md:flex items-center gap-8 lg:gap-10 text-xs lg:text-sm tracking-[0.25em] uppercase">
-            <Link href="/collection" className="hover:opacity-70 transition">Shop</Link>
-            <Link href="/collection" className="hover:opacity-70 transition">New</Link>
-            <Link href="/collection" className="hover:opacity-70 transition">Collections</Link>
+            <Link href="/collection" className="hover:opacity-70 hover:scale-105 transition-all duration-300 transform">Shop</Link>
+            <Link href="/collection" className="hover:opacity-70 hover:scale-105 transition-all duration-300 transform">New</Link>
+            <Link href="/collection" className="hover:opacity-70 hover:scale-105 transition-all duration-300 transform">Collections</Link>
           </nav>
 
           {/* MOBILE MENU BUTTON */}
@@ -97,10 +97,10 @@ const Navbar = () => {
       {cartOpen && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm animate-fade-in"
             onClick={() => setCartOpen(false)}
           />
-          <aside className="fixed right-0 top-0 z-50 h-full w-full max-w-105 bg-white shadow-2xl">
+          <aside className="fixed right-0 top-0 z-50 h-full w-full max-w-105 bg-white shadow-2xl animate-slide-in-right">
             <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
               <h2 className="text-base uppercase tracking-[0.35em] text-slate-900">
                 Your cart (0)
@@ -133,12 +133,12 @@ const Navbar = () => {
         <div
           className={`md:hidden absolute top-16 left-0 w-full ${
             scrolled ? "bg-white text-black" : "bg-black text-white"
-          } shadow-lg`}
+          } shadow-lg animate-slide-in-down`}
         >
           <nav className="flex flex-col items-center py-6 gap-6 text-sm uppercase tracking-[0.2em]">
-            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 transition">Shop</Link>
-            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 transition">New</Link>
-            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 transition">Collections</Link>
+            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 hover:scale-105 transition-all duration-300 transform">Shop</Link>
+            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 hover:scale-105 transition-all duration-300 transform">New</Link>
+            <Link href="/collection" onClick={() => setMenuOpen(false)} className="hover:opacity-70 hover:scale-105 transition-all duration-300 transform">Collections</Link>
           </nav>
         </div>
       )}

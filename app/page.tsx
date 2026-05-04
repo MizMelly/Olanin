@@ -11,7 +11,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ShopByCategory />
-      <BestSellers />
+      <BestSellers selectedFilter={""} />
       <Editorial />
       <Footer />
     </main>
